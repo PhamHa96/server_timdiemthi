@@ -2,15 +2,29 @@ var Student = require('../models/student.model');
 var router = require('express').Router();
 var studentController = require('../controller/student.controller');
 
+router.get('/search',searchStudent)
 router.get('/', getStudents);
 router.post('/', createStudent);
+router.get('/:id', getStudentid);
 
 module.exports = router
 
+function searchStudent(req,res){
+   console.log('sasa');
+   console.log(req.query + 'sasas');
+    // studentController.getStudentname (req.query)
+    // .then(student=>{
+    //     return res.send(student)
+    //  })
+    //  .catch(err=>{
+    //      return res.send('fail')
+    //  })
+}
+
 function getStudents(req,res){
     studentController.getStudent()
-    .then(user=>{
-       return res.send(user)
+    .then(student=>{
+       return res.send(student)
     })
     .catch(err=>{
         return res.send('fail')
@@ -25,4 +39,14 @@ function createStudent(req, res) {
         res.send(err);
         res.send('fail!');
     })
+}
+function getStudentid(req,res){
+    var masv = req.params.id;
+    studentController.getStudentid(masv)
+    .then(student=>{
+        return res.send(student)
+     })
+     .catch(err=>{
+         return res.send('fail')
+     })
 }

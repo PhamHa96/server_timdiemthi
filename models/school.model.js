@@ -13,11 +13,7 @@ var schoolSchema = new Schema({
         type: Number,
         required:true
     },
-    khuVuc: {
-        type: String,
-        required: true
-    },
-    chiTieu:{
+    khuvuc:{
         type: String,
         required:true
     }
